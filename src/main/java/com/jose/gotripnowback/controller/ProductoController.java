@@ -1,7 +1,7 @@
 package com.jose.gotripnowback.controller;
 
 
-import com.jose.gotripnowback.dto.Mensaje;
+import com.jose.gotripnowback.dto.Message;
 import com.jose.gotripnowback.dto.ProductoDto;
 import com.jose.gotripnowback.entity.Producto;
 import com.jose.gotripnowback.service.ProductoService;
@@ -31,7 +31,7 @@ public class ProductoController {
     @GetMapping("/detail/{id}")
     public ResponseEntity<Producto> getById(@PathVariable("id") int id){
         if(!productoService.existsById(id))
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
         Producto producto = productoService.getOne(id).get();
         return new ResponseEntity(producto, HttpStatus.OK);
     }
@@ -39,7 +39,7 @@ public class ProductoController {
     @GetMapping("/detailname/{nombre}")
     public ResponseEntity<Producto> getByNombre(@PathVariable("nombre") String nombre){
         if(!productoService.existsByNombre(nombre))
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
         Producto producto = productoService.getByNombre(nombre).get();
         return new ResponseEntity(producto, HttpStatus.OK);
     }
@@ -48,42 +48,42 @@ public class ProductoController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getNombre()))
-            return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoDto.getPrecio()==null || productoDto.getPrecio()<0 )
-            return new ResponseEntity(new Mensaje("el precio debe ser mayor que 0"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("el precio debe ser mayor que 0"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByNombre(productoDto.getNombre()))
-            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(new Message("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         Producto producto = new Producto(productoDto.getNombre(), productoDto.getPrecio());
         productoService.save(producto);
-        return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
+        return new ResponseEntity(new Message("producto creado"), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody ProductoDto productoDto){
         if(!productoService.existsById(id))
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
         if(productoService.existsByNombre(productoDto.getNombre()) && productoService.getByNombre(productoDto.getNombre()).get().getId() != id)
-            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(productoDto.getNombre()))
-            return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoDto.getPrecio()==null || productoDto.getPrecio()<0 )
-            return new ResponseEntity(new Mensaje("el precio debe ser mayor que 0"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("el precio debe ser mayor que 0"), HttpStatus.BAD_REQUEST);
 
         Producto producto = productoService.getOne(id).get();
         producto.setNombre(productoDto.getNombre());
         producto.setPrecio(productoDto.getPrecio());
         productoService.save(producto);
-        return new ResponseEntity(new Mensaje("producto actualizado"), HttpStatus.OK);
+        return new ResponseEntity(new Message("producto actualizado"), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!productoService.existsById(id))
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
         productoService.delete(id);
-        return new ResponseEntity(new Mensaje("producto eliminado"), HttpStatus.OK);
+        return new ResponseEntity(new Message("producto eliminado"), HttpStatus.OK);
     }
 
 

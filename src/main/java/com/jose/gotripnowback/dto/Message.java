@@ -1,9 +1,9 @@
 package com.jose.gotripnowback.dto;
 
-public class Mensaje {
+public class Message {
     private String mensaje;
 
-    public Mensaje(String mensaje) {
+    public Message(String mensaje) {
         this.mensaje = mensaje;
     }
 
