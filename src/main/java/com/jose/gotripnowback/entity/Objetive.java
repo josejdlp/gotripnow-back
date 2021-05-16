@@ -21,6 +21,8 @@ public class Objetive {
 
     String description;
 
+    String city;
+
     String urlWiki;
 
     String latitude;

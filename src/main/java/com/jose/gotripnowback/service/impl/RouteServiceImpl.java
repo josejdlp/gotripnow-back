@@ -37,7 +37,7 @@ public class RouteServiceImpl implements RouteService {
             return new ResponseEntity<>(new Message(Constants.ROUTE_EXIST), HttpStatus.BAD_REQUEST);
         }
         if(route.getNombre().isBlank()){
-            return new ResponseEntity<>(new Message(Constants.ERROR_NAME_ROUTE), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message(Constants.ERROR_NAME), HttpStatus.BAD_REQUEST);
         }
 
         routeRepository.save(route);
