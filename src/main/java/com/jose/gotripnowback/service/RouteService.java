@@ -1,6 +1,8 @@
 package com.jose.gotripnowback.service;
 
+import com.jose.gotripnowback.dto.AssociateObjetives_input;
 import com.jose.gotripnowback.dto.Message;
+import com.jose.gotripnowback.entity.Objetive;
 import com.jose.gotripnowback.entity.Route;
 import org.springframework.http.ResponseEntity;
 
@@ -12,4 +14,6 @@ public interface RouteService {
     Route getRouteById(Integer id);
 
     ResponseEntity<Message> createRoute(Route route);
+
+    ResponseEntity<Message> associateObjetives(Integer idRoute, AssociateObjetives_input idsObjetives);
 }

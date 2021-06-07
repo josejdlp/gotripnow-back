@@ -34,6 +34,9 @@ public class Objetive {
     @Column(name = "picByte", length = 1000)
     private byte[] picByte;
 
+    @ManyToMany
+    private List<Route> routes;
+
     @OneToMany
     private List<Capture> captures;
 }

@@ -1,5 +1,8 @@
 package com.jose.gotripnowback.controller;
 
+import com.jose.gotripnowback.dto.AssociateObjetives_input;
+import com.jose.gotripnowback.dto.Message;
+import com.jose.gotripnowback.entity.Objetive;
 import com.jose.gotripnowback.entity.Producto;
 import com.jose.gotripnowback.entity.Route;
 import com.jose.gotripnowback.service.RouteService;
@@ -38,4 +41,12 @@ public class RouteController {
     public ResponseEntity<?> createRoute(@RequestBody Route route){
         return routeService.createRoute(route);
     }
+
+    @PutMapping("{id_route}")
+    public ResponseEntity<Message> associateObjetives(@PathVariable("id_route") Integer idRoute,
+                                                      @RequestBody AssociateObjetives_input idsObjetives){
+
+        return routeService.associateObjetives(idRoute,idsObjetives);
+    }
+
 }

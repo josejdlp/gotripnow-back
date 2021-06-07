@@ -19,6 +19,6 @@ public class Route {
 
     private String nombre;
 
-    @OneToMany
+    @ManyToMany
     private List<Objetive> objetives;
 }
