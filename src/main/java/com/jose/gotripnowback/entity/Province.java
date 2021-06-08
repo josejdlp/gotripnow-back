@@ -11,25 +11,16 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Objetive {
+public class Province {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    String name;
+    private String name;
 
-    String description;
-
-    String urlWiki;
-
-    String latitude;
-
-    String longitude;
-
-    @ManyToMany
-    private List<Route> routes;
+    private String description;
 
     @OneToMany
-    private List<Capture> captures;
+    private List<Route> routes;
 }

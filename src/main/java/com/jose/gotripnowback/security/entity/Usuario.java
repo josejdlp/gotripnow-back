@@ -1,5 +1,7 @@
 package com.jose.gotripnowback.security.entity;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
