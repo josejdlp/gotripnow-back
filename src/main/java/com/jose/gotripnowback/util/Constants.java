@@ -16,6 +16,10 @@ public class Constants {
     public static final String OBJETIVES_ASSOCIATED="Objetivos asociados correctamente a la ruta";
     public static final String OBJETIVE_NOT_FOUND="Ruta no encontrada";
 
+    //CAPTURA
+    public static final String ERROR_CAPTURE="Se ha producido un error al crear la captura";
+    public static final String OK_CAPTURE="Captura realizada correctamente";
+
     //Error
     public static final String ERROR_BBDD="Se ha producido un error de base de datos";
 }

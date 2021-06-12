@@ -53,8 +53,8 @@ public class PopulateObjetsImpl implements PopulateService {
         Objetive o1=Objetive.builder()
                 .name("Catadral de Jaén")
                 .description("La Santa Iglesia Catedral de la Asunción de la Virgen es la catedral de Jaén, sede episcopal de la diócesis de Jaén, en la comunidad autónoma de Andalucía..")
-                .latitude("11111")
-                .longitude("22222")
+                .latitude("37.76497458000444")
+                .longitude("-3.7904960738629248")
                 .urlWiki("https://es.wikipedia.org/wiki/Catedral_de_la_Asunci%C3%B3n_de_Ja%C3%A9n")
                 .build();
         objetiveRepository.save(o1);
@@ -62,8 +62,8 @@ public class PopulateObjetsImpl implements PopulateService {
         Objetive o2=Objetive.builder()
                 .name("Castillo de Jaén")
                 .description("El \"Castillo de Jaén\" es, en realidad, un conjunto de tres castillos o fortalezas que conforman un gran recinto, que ocupa casi toda la alargada cima del Cerro de Santa Catalina.")
-                .latitude("11111")
-                .longitude("22222")
+                .latitude("37.76827860502292")
+                .longitude("-3.8023884297881745")
                 .urlWiki("https://es.wikipedia.org/wiki/Castillo_de_Ja%C3%A9n")
                 .build();
         objetiveRepository.save(o2);
@@ -71,14 +71,15 @@ public class PopulateObjetsImpl implements PopulateService {
         Objetive o3=Objetive.builder()
                 .name("Baños Árabes")
                 .description("Los Baños Árabes de la ciudad de Jaén, conocidos como Baño del Niño (en árabe, Hamman al-Walad) están ubicados en los sótanos del Palacio de Villardompardo.")
-                .latitude("11111")
-                .longitude("22222")
+                .latitude("37.77107171885877")
+                .longitude("-3.7942382918569804")
                 .urlWiki("https://es.wikipedia.org/wiki/Ba%C3%B1os_%C3%81rabes_de_Ja%C3%A9n")
                 .build();
         objetiveRepository.save(o3);
 
         Route r1=Route.builder()
-                .nombre("Los 3 monumentos imprescindibles")
+                .name("Los 3 monumentos imprescindibles")
+                .description("Con esta ruta descubrirás los monumentos que debes descubrir, todos con mucha historia!")
                 .objetives(new ArrayList<>(Arrays.asList(o1,o2,o3)))
                 .build();
         routeRepository.save(r1);
@@ -111,7 +112,7 @@ public class PopulateObjetsImpl implements PopulateService {
         usuarioRepository.save(jose);
 
         Set<Rol> rolesAdmin = new HashSet<>();
-        rolesJose.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        rolesAdmin.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
         Usuario admin=new Usuario();
         admin.setNombre("Señor Admin");
         admin.setEmail("admin@gmail.com");

@@ -6,8 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ApiObjetive {
+public class ApiObjetiveProfile {
     int id;
     String name;
     boolean captured;
+    String date;
 }

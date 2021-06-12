@@ -17,7 +17,9 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nombre;
+    private String name;
+
+    private String description;
 
     @ManyToMany
     private List<Objetive> objetives;

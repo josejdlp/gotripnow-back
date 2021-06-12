@@ -1,4 +1,9 @@
 package com.jose.gotripnowback.service;
 
-public interface UserController {
+import com.jose.gotripnowback.dto.api.ApiRouteProfile;
+
+import java.util.List;
+
+public interface UserService {
+   public List<ApiRouteProfile> getCapturesFromUser();
 }

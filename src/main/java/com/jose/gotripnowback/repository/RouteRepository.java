@@ -11,5 +11,5 @@ public interface RouteRepository extends JpaRepository<Route, Integer> {
 
     Optional<Route> findById(Integer id);
 
-    Optional<Route> findByNombre(String nombre);
+    Optional<Route> findByName(String name);
 }

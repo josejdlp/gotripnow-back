@@ -42,10 +42,10 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public ResponseEntity<Message> createRoute(Route route) {
-        if(routeRepository.findByNombre(route.getNombre()).isPresent()){
+        if(routeRepository.findByName(route.getName()).isPresent()){
             return new ResponseEntity<>(new Message(Constants.ROUTE_EXIST), HttpStatus.BAD_REQUEST);
         }
-        if(route.getNombre().isBlank()){
+        if(route.getName().isBlank()){
             return new ResponseEntity<>(new Message(Constants.ERROR_NAME), HttpStatus.BAD_REQUEST);
         }
 
