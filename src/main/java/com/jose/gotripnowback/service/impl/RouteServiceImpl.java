@@ -2,9 +2,13 @@ package com.jose.gotripnowback.service.impl;
 
 import com.jose.gotripnowback.dto.AssociateObjetives_input;
 import com.jose.gotripnowback.dto.Message;
+import com.jose.gotripnowback.dto.api.ApiRoute;
+import com.jose.gotripnowback.dto.api.ApiRouteNew;
 import com.jose.gotripnowback.entity.Objetive;
+import com.jose.gotripnowback.entity.Province;
 import com.jose.gotripnowback.entity.Route;
 import com.jose.gotripnowback.repository.ObjetiveRepository;
+import com.jose.gotripnowback.repository.ProvinceRepository;
 import com.jose.gotripnowback.repository.RouteRepository;
 import com.jose.gotripnowback.service.RouteService;
 import com.jose.gotripnowback.util.Constants;
@@ -28,6 +32,9 @@ public class RouteServiceImpl implements RouteService {
     @Autowired
     ObjetiveRepository objetiveRepository;
 
+    @Autowired
+    ProvinceRepository provinceRepository;
+
     @Override
     public List<Route> list() {
         return routeRepository.findAll();
@@ -41,7 +48,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public ResponseEntity<Message> createRoute(Route route) {
+    public ResponseEntity<Message> createRoute(ApiRouteNew route) {
         if(routeRepository.findByName(route.getName()).isPresent()){
             return new ResponseEntity<>(new Message(Constants.ROUTE_EXIST), HttpStatus.BAD_REQUEST);
         }
@@ -49,9 +56,21 @@ public class RouteServiceImpl implements RouteService {
             return new ResponseEntity<>(new Message(Constants.ERROR_NAME), HttpStatus.BAD_REQUEST);
         }
 
-        routeRepository.save(route);
+      //buscar objetivos
+        Route routeNew= Route.builder()
+                .name(route.getName())
+                .description(route.getDescription())
+                .objetives(objetiveRepository.findAllById(route.getIdObjetives()))
+                .build();
 
 
+      //guardar Ruta con los objetivos
+        Route routeSaved=routeRepository.save(routeNew);
+
+        //guardar en provincia la ruta nueva
+        Province p=provinceRepository.findById(route.getIdProvince()).orElseGet(null);
+        p.getRoutes().add(routeSaved);
+        provinceRepository.save(p);
         return new ResponseEntity<>(new Message(Constants.ROUTE_CREATED),HttpStatus.OK);
     }
 

@@ -10,6 +10,6 @@ public interface ObjetiveService {
 
     List<Objetive> getObjetives();
 
-    ResponseEntity<Message> createObjetive(Objetive objetive);
+    ResponseEntity<Integer> createObjetive(Objetive objetive);
 
 }

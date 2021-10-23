@@ -51,7 +51,7 @@ public class CaptureServiceImpl implements CaptureService {
             //Comprobacion de que no esta capturado previamente
 
             Optional<Capture> captureExist=captureRepository.findByRouteIdAndObjetiveId(route.getId(),objetive.getId());
-            if(captureExist==null){
+            if( ! captureExist.isPresent()){
                 Capture capture=Capture.builder()
                         .date(DateUtils.getCurrentDate())
                         .objetive(objetive)

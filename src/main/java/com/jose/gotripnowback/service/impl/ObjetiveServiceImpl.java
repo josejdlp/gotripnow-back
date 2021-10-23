@@ -32,9 +32,9 @@ public class ObjetiveServiceImpl implements ObjetiveService {
            return new ResponseEntity(new Message(Constants.ERROR_NAME), HttpStatus.BAD_REQUEST);
        }
 
-       objetiveRepository.save(objetive);
+       Objetive objetiveSaved=objetiveRepository.save(objetive);
 
-       return new ResponseEntity(new Message(Constants.OBJETIVE_CREATED),HttpStatus.OK);
+       return new ResponseEntity(objetiveSaved.getId(),HttpStatus.OK);
     }
 
 }

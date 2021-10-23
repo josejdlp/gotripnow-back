@@ -49,7 +49,7 @@ public class ObjetiveController {
 
 
     @PostMapping()
-    ResponseEntity<Message> createObjetive(@RequestBody Objetive objetive){
+    ResponseEntity<Integer> createObjetive(@RequestBody Objetive objetive){
         return objetiveService.createObjetive(objetive);
     }
 

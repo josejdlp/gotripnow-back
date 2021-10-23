@@ -6,12 +6,13 @@ import lombok.Setter;
 
 import java.util.List;
 
+
 @Builder
 @Getter
 @Setter
-public class ApiRoute {
-    private int id;
+public class ApiRouteNew {
     private String name;
     private String description;
     private List<Integer> idObjetives;
+    private Integer idProvince;
 }

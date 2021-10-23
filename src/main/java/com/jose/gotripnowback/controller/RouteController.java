@@ -2,6 +2,8 @@ package com.jose.gotripnowback.controller;
 
 import com.jose.gotripnowback.dto.AssociateObjetives_input;
 import com.jose.gotripnowback.dto.Message;
+import com.jose.gotripnowback.dto.api.ApiRoute;
+import com.jose.gotripnowback.dto.api.ApiRouteNew;
 import com.jose.gotripnowback.entity.Objetive;
 import com.jose.gotripnowback.entity.Producto;
 import com.jose.gotripnowback.entity.Route;
@@ -38,15 +40,16 @@ public class RouteController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> createRoute(@RequestBody Route route){
-        return routeService.createRoute(route);
+    public ResponseEntity<String> createRoute(@RequestBody ApiRouteNew route){
+         routeService.createRoute(route);
+         return new ResponseEntity(route, HttpStatus.OK);
     }
 
-    @PutMapping("{id_route}")
+   /* @PutMapping("{id_route}")
     public ResponseEntity<Message> associateObjetives(@PathVariable("id_route") Integer idRoute,
                                                       @RequestBody AssociateObjetives_input idsObjetives){
 
         return routeService.associateObjetives(idRoute,idsObjetives);
-    }
+    }*/
 
 }
